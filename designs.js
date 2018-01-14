@@ -1,10 +1,11 @@
-// Select color input
-// Select size input
-
-// When size is submitted by the user, call makeGrid()
-function makeGrid(n,m){
+const height= $('#input_height');
+const width=  $('#input_width');
+const color= $('#colorPicker');
+function makeGrid(){
+  let heightinput=height.val();
+  let widthinput=width.val();
 let value;
-for(let rows=0;rows<n;rows++)
+for(let rows=0;rows<heightinput;rows++)
    {
      if(rows==0)
      {
@@ -13,7 +14,7 @@ for(let rows=0;rows<n;rows++)
      else {
        value=value+'<tr>';
      }
-       for(let columns=0;columns<m;columns++)
+       for(let columns=0;columns<widthinput;columns++)
        {
           value=value+'<td>';
        }
@@ -21,30 +22,29 @@ for(let rows=0;rows<n;rows++)
  $('#pixel_canvas').append(value);
 }
 
-function colourtable(color)
+function colourtable()
 {
-  $('table').click(function(event){
-    $(event.target).css('background-color',color);
+  $('table').click(function(){
+      let colorinput = color.val();
+      $(event.target).css('background-color', colorinput);
+   });
+}
+
+function refreshgrid(){
+  $('#sizePicker').submit(function(event){
+    $('#pixel_canvas').empty();
+    makeGrid();
   });
 }
 
-function refreshGrid(){
-  $('#sizePicker').submit(function(event){
-        window.location.reload();
-   });
-}
 $(document).ready(function(){
  $('#sizePicker').submit(function(event){
-   const height= $('#input_height').val();
-   const width=  $('#input_width').val();
-   const color= $('#colorPicker').val();
 
+   colourtable();
 
-   colourtable(color);
+   makeGrid();
 
-   makeGrid(height,width);
-
-   refreshGrid();
+   refreshgrid();
 
    event.preventDefault();
   });
