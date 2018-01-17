@@ -2,6 +2,7 @@ const height= $('#input_height');
 const width=  $('#input_width');
 const color= $('#colorPicker');
 function makeGrid(){
+  //grid generation based on user input
   let heightinput=height.val();
   let widthinput=width.val();
 let value;
@@ -23,6 +24,7 @@ for(let rows=0;rows<heightinput;rows++)
 }
 
 function colourtable()
+   //for choosing various colours and paint the canvas
 {
   $('table').click(function(){
       let colorinput = color.val();
@@ -31,6 +33,7 @@ function colourtable()
 }
 
 function refreshgrid(){
+     //for refreshing the grid
   $('#sizePicker').submit(function(event){
     $('#pixel_canvas').empty();
     makeGrid();
